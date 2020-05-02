@@ -15,8 +15,14 @@ class TwoOptionQuestionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFCard(
+      border: Border.all(
+        color: GFColors.SUCCESS,
+        width: 5,
+      ),
+      image: Image.asset('assets/quiz.jpg',filterQuality: FilterQuality.medium),
+      padding: EdgeInsets.all(30),
+      elevation: 5,
       boxFit: BoxFit.cover,
-      image: Image.asset('your asset image'),
 //      title: GFListTile(
 //          title: Text(question),
 //          icon: GFIconButton(
@@ -25,19 +31,22 @@ class TwoOptionQuestionWidget extends StatelessWidget {
 //            //type: GFType.transparent,
 //          )
 //      ),
-      content: Text("Some quick example text to build on the card"),
+      content: Text(question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
       buttonBar: GFButtonBar(
+        padding: EdgeInsets.all(30),
+        alignment: WrapAlignment.spaceBetween,
+        spacing:12,
         // alignment: MainAxisAlignment.start,
         children: <Widget>[
           GFButton(
             color: GFColors.SUCCESS,
             onPressed: () {},
-            text: 'True',
+            text: trueLabel,
           ),
           GFButton(
             color: GFColors.DANGER,
             onPressed: () {},
-            text: 'False',
+            text: falseLabel,
           ),
         ],
       ),

@@ -12,7 +12,8 @@ class Quizzler extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: GFAppBar(
-          title: Text("QUIZLLER"),
+          title: Text("QUIZLLER", style: TextStyle(color:GFColors.SUCCESS , fontWeight: FontWeight.bold,),),
+          backgroundColor: GFColors.DARK,
         ),
         backgroundColor: Colors.grey.shade900,
         body: SafeArea(
