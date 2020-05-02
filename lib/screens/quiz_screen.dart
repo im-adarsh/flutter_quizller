@@ -27,7 +27,6 @@ class _QuizScreenState extends State<QuizScreen> {
         title: 'Finished!',
         desc: 'You\'ve reached the end of the quiz.',
       ).show();
-
       q.reset();
       scoreKeeper = [];
     }
