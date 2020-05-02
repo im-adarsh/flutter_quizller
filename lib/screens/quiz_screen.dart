@@ -11,17 +11,19 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
 
   List<Icon> scoreKeeper = [
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    )
   ];
 
   List<String> questions = [
-    "You can lead a cow down stairs but not up stairs."
-    "Approximately one quarter of human bones are in the feet."
+    "You can lead a cow down stairs but not up stairs.",
+    "Approximately one quarter of human bones are in the feet.",
     "A slug\'s blood is green."
   ];
+  List<bool> isTrueAnswer = [
+    true,
+    false,
+    true,
+  ];
+
   int questionNo = 0;
 
   @override
@@ -31,16 +33,34 @@ class _QuizScreenState extends State<QuizScreen> {
         question: questions[questionNo],
         trueLabel: "True",
         falseLabel: "False",
-        isTrueAnswer: true,
+        onTruePressed: () {
+          setState(() {
+            answered(true);
+          });
+        },
+        onFalsePressed: () {
+          setState(() {
+            answered(false);
+          });
+        },
       ),
     );
   }
+
+  void answered( bool got) {
+     if (isTrueAnswer[questionNo] == got) {
+      scoreKeeper.add( Icon(
+        Icons.check,
+        color: Colors.green,
+      ));
+    }else {
+      scoreKeeper.add( Icon(
+        Icons.close,
+        color: Colors.red,
+      ));
+    }
+    if (questions.length - 1  > questionNo ) {
+      questionNo++;
+    }
+  }
 }
-
-
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/

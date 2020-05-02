@@ -4,13 +4,14 @@ import 'package:getflutter/getflutter.dart';
 
 class TwoOptionQuestionWidget extends StatelessWidget {
   const TwoOptionQuestionWidget({
-    Key key, this.question, this.trueLabel, this.falseLabel, this.isTrueAnswer,
+    Key key, this.question, this.trueLabel, this.falseLabel, this.onTruePressed, this.onFalsePressed,
   }) : super(key: key);
 
   final String question;
   final String trueLabel;
   final String falseLabel;
-  final bool isTrueAnswer;
+  final VoidCallback onTruePressed;
+  final VoidCallback onFalsePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +42,13 @@ class TwoOptionQuestionWidget extends StatelessWidget {
           GFButton(
             size: GFSize.LARGE,
             color: GFColors.SUCCESS,
-            onPressed: () {},
+            onPressed: onTruePressed,
             text: trueLabel,
           ),
           GFButton(
             size: GFSize.LARGE,
             color: GFColors.DANGER,
-            onPressed: () {},
+            onPressed: onFalsePressed,
             text: falseLabel,
           ),
         ],
