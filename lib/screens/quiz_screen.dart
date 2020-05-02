@@ -17,18 +17,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        TwoOptionQuestionWidget(
-          question:"This is where the question text will go.",
-          trueLabel: "True",
-          falseLabel: "False",
-          isTrueAnswer: true,
-        ),
-        //TODO: Add a Row here as your score keeper
-      ],
+    return TwoOptionQuestionWidget(
+      question:"This is where the question text will go.",
+      trueLabel: "True",
+      falseLabel: "False",
+      isTrueAnswer: true,
     );
   }
 }
@@ -44,67 +37,70 @@ class TwoOptionQuestionWidget extends StatelessWidget {
   final bool isTrueAnswer;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children : <Widget>[
-        Expanded(
-          flex: 5,
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Center(
-              child: Text(
-                question,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children : <Widget>[
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Center(
+                child: Text(
+                  question,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
-              child: Text(
-                trueLabel,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: FlatButton(
+                textColor: Colors.white,
+                color: Colors.green,
+                child: Text(
+                  trueLabel,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
                 ),
+                onPressed: () {
+                  if (isTrueAnswer) {
+                    print("you are correct");
+                  }
+                },
               ),
-              onPressed: () {
-                if (isTrueAnswer) {
-                  print("you are correct");
-                }
-              },
             ),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
-              child: Text(
-                falseLabel,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: FlatButton(
+                color: Colors.red,
+                child: Text(
+                  falseLabel,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                  ),
                 ),
+                onPressed: () {
+                  if (!isTrueAnswer) {
+                    print("you are wrong");
+                  }
+                },
               ),
-              onPressed: () {
-                if (!isTrueAnswer) {
-                  print("you are wrong");
-                }
-              },
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
