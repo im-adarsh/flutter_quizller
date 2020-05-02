@@ -35,15 +35,17 @@ class TwoOptionQuestionWidget extends StatelessWidget {
       buttonBar: GFButtonBar(
         padding: EdgeInsets.all(30),
         alignment: WrapAlignment.spaceBetween,
-        spacing:12,
+        spacing:90,
         // alignment: MainAxisAlignment.start,
         children: <Widget>[
           GFButton(
+            size: GFSize.LARGE,
             color: GFColors.SUCCESS,
             onPressed: () {},
             text: trueLabel,
           ),
           GFButton(
+            size: GFSize.LARGE,
             color: GFColors.DANGER,
             onPressed: () {},
             text: falseLabel,
