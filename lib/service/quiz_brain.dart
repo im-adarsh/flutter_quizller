@@ -29,6 +29,10 @@ class QuizBrain {
   }
 
   void reset() {
-      _questionNo=1;
+      _questionNo=-1;
+  }
+
+  bool isFinished() {
+    return _questionNo == _questionBank.length -1;
   }
 }

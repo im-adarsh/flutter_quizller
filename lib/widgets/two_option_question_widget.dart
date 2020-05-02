@@ -32,7 +32,9 @@ class TwoOptionQuestionWidget extends StatelessWidget {
 //            //type: GFType.transparent,
 //          )
 //      ),
-      content: Text(question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),),
+      content: Container(
+          height: 300,
+          child: Text(question, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),)),
       buttonBar: GFButtonBar(
         padding: EdgeInsets.all(30),
         alignment: WrapAlignment.spaceBetween,

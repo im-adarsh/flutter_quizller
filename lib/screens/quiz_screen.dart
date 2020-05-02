@@ -15,11 +15,25 @@ class _QuizScreenState extends State<QuizScreen> {
   ];
 
   QuizBrain q = new QuizBrain();
-  int correctAnswerCount = 0;
-  int wrongAnswerCount = 0;
 
   @override
   Widget build(BuildContext context) {
+    if (q.isFinished())  {
+      // show alert and reset
+
+
+      GFFloatingWidget(
+          horizontalPosition:40.0,
+          verticalPosition:20.0,
+          child:GFAlert(
+            title: 'Welcome!',
+          ),
+          body:Text('body or any kind of widget here..')
+      );
+
+      q.reset();
+      scoreKeeper = [];
+    }
     Question question = q.getQuestionNext();
     return Column(
       children: <Widget>[
@@ -39,17 +53,15 @@ class _QuizScreenState extends State<QuizScreen> {
           },
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: scoreKeeper,
         ),
-
       ],
     );
   }
 
   void answered(bool expected, bool got) {
      if (expected == got) {
-       correctAnswerCount++;
        scoreKeeper.add(GFIconBadge(
          child: GFIconButton(
            size: GFSize.SMALL,
@@ -59,7 +71,6 @@ class _QuizScreenState extends State<QuizScreen> {
          ),
        ));
     }else {
-       wrongAnswerCount++;
        scoreKeeper.add(GFIconBadge(
          child: GFIconButton(
            size: GFSize.SMALL,
