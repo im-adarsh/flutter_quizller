@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizller/widgets/two_option_question_widget.dart';
+import 'package:getflutter/getflutter.dart';
 
 class QuizScreen extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class _QuizScreenState extends State<QuizScreen> {
       color: Colors.green,
     )
   ];
+
+  String question = "This is where the question text will go.";
+  bool isTrueAnswer = true;
 
   @override
   Widget build(BuildContext context) {

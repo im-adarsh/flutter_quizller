@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getflutter/getflutter.dart';
 
 class TwoOptionQuestionWidget extends StatelessWidget {
   const TwoOptionQuestionWidget({
@@ -13,67 +14,30 @@ class TwoOptionQuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children : <Widget>[
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  question,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+    return GFCard(
+      boxFit: BoxFit.cover,
+      image: Image.asset('your asset image'),
+//      title: GFListTile(
+//          title: Text(question),
+//          icon: GFIconButton(
+//            onPressed: null,
+//            icon: Icon(Icons.favorite_border),
+//            //type: GFType.transparent,
+//          )
+//      ),
+      content: Text("Some quick example text to build on the card"),
+      buttonBar: GFButtonBar(
+        // alignment: MainAxisAlignment.start,
+        children: <Widget>[
+          GFButton(
+            color: GFColors.SUCCESS,
+            onPressed: () {},
+            text: 'True',
           ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: FlatButton(
-                textColor: Colors.white,
-                color: Colors.green,
-                child: Text(
-                  trueLabel,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),
-                ),
-                onPressed: () {
-                  if (isTrueAnswer) {
-                    print("you are correct");
-                  }
-                },
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: FlatButton(
-                color: Colors.red,
-                child: Text(
-                  falseLabel,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
-                ),
-                onPressed: () {
-                  if (!isTrueAnswer) {
-                    print("you are wrong");
-                  }
-                },
-              ),
-            ),
+          GFButton(
+            color: GFColors.DANGER,
+            onPressed: () {},
+            text: 'False',
           ),
         ],
       ),
