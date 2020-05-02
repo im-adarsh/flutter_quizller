@@ -4,6 +4,7 @@ import 'package:quizller/models/question.dart';
 import 'package:quizller/service/quiz_brain.dart';
 import 'package:quizller/widgets/two_option_question_widget.dart';
 import 'package:getflutter/getflutter.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class QuizScreen extends StatefulWidget {
   @override
@@ -21,15 +22,11 @@ class _QuizScreenState extends State<QuizScreen> {
     if (q.isFinished())  {
       // show alert and reset
 
-
-      GFFloatingWidget(
-          horizontalPosition:40.0,
-          verticalPosition:20.0,
-          child:GFAlert(
-            title: 'Welcome!',
-          ),
-          body:Text('body or any kind of widget here..')
-      );
+      Alert(
+        context: context,
+        title: 'Finished!',
+        desc: 'You\'ve reached the end of the quiz.',
+      ).show();
 
       q.reset();
       scoreKeeper = [];
