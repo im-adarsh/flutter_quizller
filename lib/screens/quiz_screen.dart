@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quizller/models/question.dart';
+import 'package:quizller/service/quiz_brain.dart';
 import 'package:quizller/widgets/two_option_question_widget.dart';
 import 'package:getflutter/getflutter.dart';
 
@@ -9,58 +11,63 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-
-  List<Icon> scoreKeeper = [
+  List<GFIconBadge> scoreKeeper = [
   ];
 
-  List<String> questions = [
-    "You can lead a cow down stairs but not up stairs.",
-    "Approximately one quarter of human bones are in the feet.",
-    "A slug\'s blood is green."
-  ];
-  List<bool> isTrueAnswer = [
-    true,
-    false,
-    true,
-  ];
-
-  int questionNo = 0;
+  QuizBrain q = new QuizBrain();
+  int correctAnswerCount = 0;
+  int wrongAnswerCount = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TwoOptionQuestionWidget(
-        question: questions[questionNo],
-        trueLabel: "True",
-        falseLabel: "False",
-        onTruePressed: () {
-          setState(() {
-            answered(true);
-          });
-        },
-        onFalsePressed: () {
-          setState(() {
-            answered(false);
-          });
-        },
-      ),
+    Question question = q.getQuestionNext();
+    return Column(
+      children: <Widget>[
+        TwoOptionQuestionWidget(
+          question: question.question,
+          trueLabel: "True",
+          falseLabel: "False",
+          onTruePressed: () {
+            setState(() {
+              answered(question.answer, true);
+            });
+          },
+          onFalsePressed: () {
+            setState(() {
+              answered(question.answer,false);
+            });
+          },
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: scoreKeeper,
+        ),
+
+      ],
     );
   }
 
-  void answered( bool got) {
-     if (isTrueAnswer[questionNo] == got) {
-      scoreKeeper.add( Icon(
-        Icons.check,
-        color: Colors.green,
-      ));
+  void answered(bool expected, bool got) {
+     if (expected == got) {
+       correctAnswerCount++;
+       scoreKeeper.add(GFIconBadge(
+         child: GFIconButton(
+           size: GFSize.SMALL,
+           color: GFColors.SUCCESS,
+           onPressed: (){},
+           icon: Icon(Icons.check),
+         ),
+       ));
     }else {
-      scoreKeeper.add( Icon(
-        Icons.close,
-        color: Colors.red,
-      ));
-    }
-    if (questions.length - 1  > questionNo ) {
-      questionNo++;
+       wrongAnswerCount++;
+       scoreKeeper.add(GFIconBadge(
+         child: GFIconButton(
+           size: GFSize.SMALL,
+           color: GFColors.DANGER,
+           onPressed: (){},
+           icon: Icon(Icons.close),
+         ),
+       ));
     }
   }
 }
