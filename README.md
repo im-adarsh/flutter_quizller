@@ -1,7 +1,7 @@
 # quizller
 
 Quizller is a quiz app made on flutter
-![alt text](docs/quizller.png)
+![alt text](docs/quizller-screen.png)
 
 ## Getting Started
 
