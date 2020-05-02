@@ -17,16 +17,22 @@ class _QuizScreenState extends State<QuizScreen> {
     )
   ];
 
-  String question = "This is where the question text will go.";
-  bool isTrueAnswer = true;
+  List<String> questions = [
+    "You can lead a cow down stairs but not up stairs."
+    "Approximately one quarter of human bones are in the feet."
+    "A slug\'s blood is green."
+  ];
+  int questionNo = 0;
 
   @override
   Widget build(BuildContext context) {
-    return TwoOptionQuestionWidget(
-      question:"This is where the question text will go.",
-      trueLabel: "True",
-      falseLabel: "False",
-      isTrueAnswer: true,
+    return Container(
+      child: TwoOptionQuestionWidget(
+        question: questions[questionNo],
+        trueLabel: "True",
+        falseLabel: "False",
+        isTrueAnswer: true,
+      ),
     );
   }
 }
